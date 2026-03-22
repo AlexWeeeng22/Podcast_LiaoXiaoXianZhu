@@ -5,25 +5,33 @@
 ```
 podcast/
 ├── recording/
-│   ├── MM_DD_YYYY/          # 每期录音文件夹，按日期命名
-│   │   ├── 嘉宾缩写/        # 每位嘉宾的素材（录音、图片等）
-│   │   └── 工程文件/        # 剪辑工程文件（GarageBand .band / Audition .sesx 等）
-│   └── TEMPLATE_MM_DD_YY/   # 新建期数时复制此模板
+│   ├── MM_DD_YYYY/          # 每期录音文件夹，按日期命名（如 03_08_2026）
+│   │   ├── hyt/             # 嘉宾录音及素材
+│   │   ├── lyh/
+│   │   ├── nb/
+│   │   ├── wpc/
+│   │   └── project_files/   # 剪辑工程文件（GarageBand .band / Audition .sesx 等）
+│   └── TEMPLATE_MM_DD_YYYY/ # 新建期数时复制此模板
 ├── script/                  # 脚本和提纲
 └── doc/                     # 文档
 ```
 
 ---
 
-## 分支命名规则
+## 文件命名规范
 
-每期对应一个独立分支，格式为：
+| 类型 | 命名格式 | 示例 |
+|------|---------|------|
+| 期数文件夹 | `MM_DD_YYYY` | `03_08_2026` |
+| 分支名 | `ep/MM-DD-YYYY` | `ep/03-08-2026` |
+| 录音文件 | `主题_嘉宾缩写.m4a` | `音乐与人生_hyt.m4a` |
 
-```
-ep/MM-DD-YYYY
-```
+---
 
-示例：`ep/03-08-2026`
+## 注意事项
+
+- 有版权的音乐文件（.ncm、.mp3、嘉宾分享的歌曲）**不上传**，已在 `.gitignore` 中排除
+- 文件夹命名只用下划线，不用冒号或空格（跨平台兼容）
 
 ---
 
@@ -40,9 +48,9 @@ git pull
 git checkout -b ep/MM-DD-YYYY
 
 # 3. 复制 template 文件夹，重命名为当期日期
-cp -r recording/TEMPLATE_MM_DD_YY recording/MM_DD_YYYY
+cp -r recording/TEMPLATE_MM_DD_YYYY recording/MM_DD_YYYY
 
-# 4. 提交初始结构
+# 4. 提交初始结构并推送
 git add recording/MM_DD_YYYY/
 git commit -m "Init episode MM/DD/YYYY"
 git push -u origin ep/MM-DD-YYYY
@@ -72,7 +80,3 @@ git push
 ## 收尾（所有素材齐全后）
 
 由 Sprint Captain 发起 Pull Request，将 `ep/MM-DD-YYYY` 合并回 `main`。
-
----
-
-> **注意**：有版权的音乐文件（.ncm、.mp3、嘉宾分享的歌曲）不会被上传，已在 `.gitignore` 中排除。
