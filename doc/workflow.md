@@ -6,8 +6,7 @@
 podcast/
 ├── recording/
 │   ├── MM_DD_YYYY/          # 每期录音文件夹，按日期命名
-│   │   ├── 嘉宾缩写/        # 每位嘉宾的原始录音
-│   │   │   └── *.m4a
+│   │   ├── 嘉宾缩写/        # 每位嘉宾的素材（录音、图片等）
 │   │   └── *.band           # GarageBand 剪辑工程文件
 │   └── TEMPLATE_MM_DD_YY/   # 新建期数时复制此模板
 ├── script/                  # 脚本和提纲
@@ -16,27 +15,64 @@ podcast/
 
 ---
 
-## 录制前
+## 分支命名规则
 
-1. 复制 `recording/TEMPLATE_MM_DD_YY/` 文件夹，重命名为当期日期（如 `03_08_2026`）
-2. 在 `script/` 里准备好本期提纲
+每期对应一个独立分支，格式为：
 
-## 录制中
+```
+ep/MM-DD-YYYY
+```
 
-- 每位嘉宾在自己的文件夹下录制，文件格式为 `.m4a`
-- 命名规则：`主题_嘉宾缩写.m4a`（如 `音乐与人生_hyt.m4a`）
+示例：`ep/03-08-2026`
 
-## 录制后
+---
 
-1. 将各嘉宾录音导入 GarageBand 工程文件（`.band`）进行剪辑混音
-2. 导出成品音频
+## Sprint Captain 工作流
 
-## 上传到 GitHub
+> **每期由 Sprint Captain 负责创建分支和初始化目录结构。**
 
 ```bash
-git add .
-git commit -m "Add recording MM/DD/YYYY: 本期主题"
+# 1. 切换到最新的 main
+git checkout main
+git pull
+
+# 2. 创建新一期的分支
+git checkout -b ep/MM-DD-YYYY
+
+# 3. 复制 template 文件夹，重命名为当期日期
+cp -r recording/TEMPLATE_MM_DD_YY recording/MM_DD_YYYY
+
+# 4. 提交初始结构
+git add recording/MM_DD_YYYY/
+git commit -m "Init episode MM/DD/YYYY"
+git push -u origin ep/MM-DD-YYYY
+```
+
+---
+
+## 组员工作流
+
+> **各组员在对应期数的分支下，将素材放入自己的文件夹后 push。**
+
+```bash
+# 1. 拉取并切换到当期分支
+git fetch origin
+git checkout ep/MM-DD-YYYY
+
+# 2. 将录音、图片等素材放入 recording/MM_DD_YYYY/自己的缩写文件夹/
+
+# 3. 提交并推送
+git add recording/MM_DD_YYYY/自己的缩写/
+git commit -m "Add [自己的名字] materials for MM/DD/YYYY"
 git push
 ```
+
+---
+
+## 收尾（所有素材齐全后）
+
+由 Sprint Captain 发起 Pull Request，将 `ep/MM-DD-YYYY` 合并回 `main`。
+
+---
 
 > **注意**：有版权的音乐文件（.ncm、.mp3、嘉宾分享的歌曲）不会被上传，已在 `.gitignore` 中排除。
