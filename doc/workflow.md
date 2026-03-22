@@ -10,7 +10,7 @@ podcast/
 │   │   ├── lyh/
 │   │   ├── nb/
 │   │   ├── wpc/
-│   │   └── project_files/   # 剪辑工程文件（GarageBand .band / Audition .sesx 等）
+│   │   └── project_files/   # Adobe Audition 工程文件（.sesx）
 │   └── TEMPLATE_MM_DD_YYYY/ # 新建期数时复制此模板
 ├── script/                  # 脚本和提纲
 └── doc/                     # 文档
