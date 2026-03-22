@@ -1,11 +1,10 @@
-# 音频文件
-*.m4a
-*.mp3
-*.wav
-*.aac
-*.flac
-*.aiff
+# 有版权的音乐文件
 *.ncm
+*.mp3
+Shanghai 5.m4a
+
+# GarageBand 导入的音频素材（可能含版权内容）
+**/*.band/Media/
 
 # Claude Code 本地配置
 .claude/
