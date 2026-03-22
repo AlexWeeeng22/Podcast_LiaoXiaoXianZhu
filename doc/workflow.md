@@ -7,7 +7,7 @@ podcast/
 ├── recording/
 │   ├── MM_DD_YYYY/          # 每期录音文件夹，按日期命名
 │   │   ├── 嘉宾缩写/        # 每位嘉宾的素材（录音、图片等）
-│   │   └── *.band           # GarageBand 剪辑工程文件
+│   │   └── 工程文件/        # 剪辑工程文件（GarageBand .band / Audition .sesx 等）
 │   └── TEMPLATE_MM_DD_YY/   # 新建期数时复制此模板
 ├── script/                  # 脚本和提纲
 └── doc/                     # 文档
